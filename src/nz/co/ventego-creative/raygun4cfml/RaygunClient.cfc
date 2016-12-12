@@ -51,7 +51,6 @@ limitations under the License.
 			var messageContent = "";
 			var jSONData = "";
 			var postResult = "";
-            		var doClean = false;
 
 			// PR10: In CF10+, the passed in issueDataStruct is not editable in all cases anymore. It looks like a
 			// struct, but is of a different internal data type behind the scenes. This works around that issue.
@@ -67,10 +66,9 @@ limitations under the License.
 				throw("API integration not valid, cannot send message to Raygun");
 			}
 
-            if (isObject(variables.contentFilter) && isArray(variables.contentFilter) && arraylen(variables.contentFilter) > 0)
+            if (isObject(variables.contentFilter))
             {
                 applyFilter(variables.contentFilter);
-                doClean = true;
             }
 
             // deal with custom data passed as an argument
@@ -105,7 +103,7 @@ limitations under the License.
             jSONData = ReplaceNoCase(trim(jSONData), "//{", "{");
             jSONData = ReplaceNoCase(trim(jSONData), "//[", "[");
 
-            if(doClean) {
+            if(isObject(variables.contentFilter)) {
                 jSONData = applyFilterJson(variables.contentFilter, jSONData);
             }
         </cfscript>
