@@ -102,6 +102,10 @@ limitations under the License.
             // KK: This will only work if the users has setup none or the default prefix for JSON data
             jSONData = ReplaceNoCase(trim(jSONData), "//{", "{");
             jSONData = ReplaceNoCase(trim(jSONData), "//[", "[");
+
+            if(isObject(variables.contentFilter)) {
+                jSONData = applyFilterJson(variables.contentFilter, jSONData);
+            }
         </cfscript>
 
 		<cfhttp url="https://api.raygun.io/entries" method="post" charset="utf-8" result="postResult">
@@ -153,6 +157,28 @@ limitations under the License.
 		</cfscript>
 
 	</cffunction>
+
+    <cffunction name="applyFilterJson" access="private" output="false" returntype="string">
+
+        <cfargument name="contentFilter" type="RaygunContentFilter" required="yes">
+        <cfargument name="json" type="string" required="yes">
+
+        <cfscript>
+            var filter = arguments.contentFilter.getFilter();
+            var match = {};
+
+            for (var i=1; i<=ArrayLen(filter); i++)
+            {
+                // current filter object (filter,replacement)
+                match = filter[i];
+
+                arguments.json = REReplace(arguments.json, match.filter, match.replacement, "ALL");
+            }
+
+            return arguments.json;
+        </cfscript>
+
+    </cffunction>
 
 
 </cfcomponent>
