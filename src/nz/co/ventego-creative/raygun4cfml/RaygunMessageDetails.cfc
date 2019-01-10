@@ -44,7 +44,7 @@ limitations under the License.
             catch (any e)
             {
                 returnContent["machineName"] = CGI.SERVER_NAME;
-			}
+            }
 
 			if (structKeyExists(arguments.issueDataStruct,"groupingKey"))
 			{
