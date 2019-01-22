@@ -46,6 +46,11 @@ limitations under the License.
                 returnContent["machineName"] = CGI.SERVER_NAME;
             }
 
+			if (structKeyExists(arguments.issueDataStruct,"groupingKey"))
+			{
+				returnContent["groupingKey"] = arguments.issueDataStruct.groupingKey;
+			}
+
 			returnContent["error"] = messageErrorDetails.build(arguments.issueDataStruct);
 			returnContent["request"] = messageRequestDetails.build(arguments.issueDataStruct);
 			returnContent["client"] = messageClientDetails.build();
