@@ -34,7 +34,6 @@ limitations under the License.
 			var osbean = mf.getOperatingSystemMXBean();
 
 			returnContent["architecture"] = props["os.arch"];
-			returnContent["availablePhysicalMemory"] = osbean.getFreePhysicalMemorySize();
 			returnContent["availableVirtualMemory"] = JavaCast("null","");
 			returnContent["cpu"] = JavaCast("null","");
 			returnContent["currentOrientation"] = JavaCast("null","");
@@ -47,7 +46,6 @@ limitations under the License.
 			returnContent["packageVersion"] = props["java.vm.vendor"] & "|" & props["java.runtime.version"] & "|" & props["java.vm.name"];
 			returnContent["processorCount"] = JavaCast("null","");
 			returnContent["resolutionScale"] = JavaCast("null","");
-			returnContent["totalPhysicalMemory"] = osbean.getTotalPhysicalMemorySize();
 			returnContent["totalVirtualMemory"] = JavaCast("null","");
 			returnContent["windowBoundsHeight"] = JavaCast("null","");
 			returnContent["windowBoundsWidth"] = JavaCast("null","");
