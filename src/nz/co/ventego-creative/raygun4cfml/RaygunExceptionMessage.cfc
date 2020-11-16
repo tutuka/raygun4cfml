@@ -107,6 +107,7 @@ limitations under the License.
 				tagContextData[j]["lineNumber"] = (structKeyExists(arguments.issueDataStruct.tagcontext[j],"line")) ?
 					trim(arguments.issueDataStruct.tagcontext[j]["line"]) : "";
 			}
+
 			returnContent["stackTrace"] = tagContextData;
 
 			return returnContent;
