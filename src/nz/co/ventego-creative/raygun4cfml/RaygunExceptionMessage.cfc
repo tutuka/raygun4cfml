@@ -100,11 +100,13 @@ limitations under the License.
 			{
 				tagContextData[j] = {};
 				tagContextData[j]["methodName"] = "";
-				tagContextData[j]["className"] = trim( arguments.issueDataStruct.tagcontext[j]["id"] );
-				tagContextData[j]["fileName"] = trim( arguments.issueDataStruct.tagcontext[j]["template"] );
-				tagContextData[j]["lineNumber"] = trim( arguments.issueDataStruct.tagcontext[j]["line"] );
+				tagContextData[j]["className"] = (structKeyExists(arguments.issueDataStruct.tagcontext[j],"id")) ?
+					trim(arguments.issueDataStruct.tagcontext[j]["id"]) : "";
+				tagContextData[j]["fileName"] = (structKeyExists(arguments.issueDataStruct.tagcontext[j],"template")) ?
+					trim(arguments.issueDataStruct.tagcontext[j]["template"]) : "";
+				tagContextData[j]["lineNumber"] = (structKeyExists(arguments.issueDataStruct.tagcontext[j],"line")) ?
+					trim(arguments.issueDataStruct.tagcontext[j]["line"]) : "";
 			}
-
 			returnContent["stackTrace"] = tagContextData;
 
 			return returnContent;
