@@ -45,6 +45,9 @@ limitations under the License.
             if (CGI.CONTENT_TYPE != "text/html" && CGI.CONTENT_TYPE != "application/x-www-form-urlencoded" && CGI.REQUEST_METHOD != "GET")
             {
                 var temp = getHttpRequestData().content;
+				if (isBinary(temp)) {
+					temp = toString(temp);
+				}
                 returnContent["rawData"] = Left(temp, rawDataMaxLength);
             }
             else
